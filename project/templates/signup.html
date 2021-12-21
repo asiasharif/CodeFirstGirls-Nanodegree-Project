@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css' )}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="signup">
+        <div class="container">
+            <h3 style="color: white; text-align: center;">Sign Up</h3>
+            <form method="POST" action="/signup">
+                <div class="form-group">
+                    <label style="font-size: 1.25rem;" for="exampleInputEmail1">Email address</label>
+                    <input class="form-control" type="email" name="email" placeholder="Email" autofocus="">
+                </div>
+
+                <div class="form-group">
+                    <label style="font-size: 1.25rem;" for="exampleInputPassword1">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <button class="btn btn-primary" style="font-size: 1.25rem;">Sign Up</button>
+            </form>
+         </div>
+    </div>
+
+{% endblock %}
+
+</html>

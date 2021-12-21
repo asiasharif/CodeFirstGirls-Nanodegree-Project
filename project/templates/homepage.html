@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css' )}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-danger">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="container">
+        <form class="form" method="POST" action="/movie">
+             <div class="form-group">
+                 <h2 style="text-align:center;">Enter a movie title for recommendations</h2>
+                 <input class="w-75" style="margin-left: 15%; font-size: 25px;" name="searchfilmtitle" type="text" placeholder="Search...">
+                 <div class="d-flex justify-content-center">
+                     <input class="btn-danger" style="width: 25%; font-size: 25px;" name="submit" value="ENTER" type="submit">
+                 </div>
+             </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+</html>

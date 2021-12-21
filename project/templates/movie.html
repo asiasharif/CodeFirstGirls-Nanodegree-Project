@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+<head>
+    <title>FilmNow</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css' )}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+{% block content %}
+     <div class="container bg-light">
+         <div class="row">
+             <div class="col-md">
+                 <img src="{{ parseMovieData.poster_path }}" width="100%">
+             </div>
+             <div class="col-md">
+                 <h1 class="text-center">{{ parseMovieData.title }}</h1>
+                 <p style="font-size:25px;">{{ parseMovieData.overview }}</p>
+                 <h3>Release Date:</h3>
+                 <p style="font-size:25px;">{{ parseMovieData.release_date }}</p>
+             </div>
+         </div>
+     </div>
+
+    <div class="container bg-light">
+        <h2 class="mb-4" style="text-align: center; text-transform: uppercase;">Recommendations</h2>
+        <div class="row">
+            {% if rec_list %}
+            {% for movie in rec_list %}
+                <div class="col-md">
+                    <h3 class="text-center">{{ movie.title }}</h3>
+                    <img class="mb-4" src="{{ movie.poster_path }}" width="100%">
+                    <p class="text-left" style="font-size:20px;">{{ movie.overview }}</p>
+                </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+
+</html>
